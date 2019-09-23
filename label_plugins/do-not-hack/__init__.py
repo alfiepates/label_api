@@ -58,18 +58,18 @@ def create_label(owner="", date_in="", date_out=""):
     y_pos += font.size * 1.3
     font_path = resource_path(FONT_REGULAR)
     ifs = int(20*FONT_SCALING) # initial font size
-    font = fit_text(date_in, LABEL_SIZE[0], font_path, ifs, break_func=break_text_whitespace, max_lines=2)
+    font = fit_text(date_in.strftime('%a %Y/%m/%d'), LABEL_SIZE[0], font_path, ifs, break_func=break_text_whitespace, max_lines=2)
     line_spacing = int(font.size * 1.15)
-    for i, line in enumerate(break_text_whitespace(date_in, font, LABEL_SIZE[0])):
+    for i, line in enumerate(break_text_whitespace(date_in.strftime('%a %Y/%m/%d'), font, LABEL_SIZE[0])):
         draw.text((x_pos, y_pos+line_spacing*i), line, font=font)
     ## COMPANY NAME
     #print("Placing company name")
     y_pos = 450
     font_path = resource_path(FONT_MEDIUM)
     ifs = int(20*FONT_SCALING) # initial font size
-    font = fit_text(date_out, LABEL_SIZE[0], font_path, ifs, break_func=break_text_whitespace, max_lines=2)
+    font = fit_text(date_out.strftime('%a %Y/%m/%d'), LABEL_SIZE[0], font_path, ifs, break_func=break_text_whitespace, max_lines=2)
     line_spacing = int(font.size * 1.15)
-    for i, line in enumerate(break_text_whitespace(date_out, font, LABEL_SIZE[0])):
+    for i, line in enumerate(break_text_whitespace(date_out.strftime('%a %Y/%m/%d'), font, LABEL_SIZE[0])):
         draw.text((x_pos, y_pos+line_spacing*i), line, font=font)
     ## Done, returning the Image instance
     return im
